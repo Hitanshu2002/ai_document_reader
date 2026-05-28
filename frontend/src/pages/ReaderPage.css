@@ -1,0 +1,297 @@
+/* Reader Page Styles */
+
+.reader-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Top Navigation Bar ── */
+.reader-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-5);
+  background: rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+  z-index: var(--z-dropdown);
+  gap: var(--space-3);
+}
+
+.reader-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+
+.reader-navbar__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reader-navbar__name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.reader-navbar__doc-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  flex: 1;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.reader-navbar__doc-name {
+  font-size: 0.83rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reader-navbar__doc-stats {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.doc-stat-badge {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  color: var(--color-text-accent);
+  white-space: nowrap;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reader-navbar__collab-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.doc-stat-badge--name {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.2);
+  color: var(--color-cyan-accent);
+}
+
+.doc-stat-badge--code {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.25);
+  color: #c084fc;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition-fast);
+}
+
+.doc-stat-badge--code:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: rgba(168, 85, 247, 0.45);
+  transform: translateY(-1px);
+}
+
+.doc-stat-badge--code.copied {
+  background: rgba(34, 197, 94, 0.15) !important;
+  border-color: rgba(34, 197, 94, 0.4) !important;
+  color: #4ade80 !important;
+}
+
+.highlight-code {
+  font-family: monospace;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+}
+
+.doc-stat-badge--members {
+  background: rgba(234, 179, 8, 0.08);
+  border-color: rgba(234, 179, 8, 0.2);
+  color: #facc15;
+}
+
+.reader-navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* ── Main Content Area ── */
+.reader-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Desktop: side-by-side */
+.reader-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 0;
+}
+
+/* Document panel */
+.reader-doc-panel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: var(--space-4);
+  border-right: 1px solid var(--color-border);
+  transition: flex 0.4s ease;
+}
+
+/* Chat panel */
+.reader-chat-panel {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.4s ease, padding 0.4s ease;
+  flex-shrink: 0;
+}
+
+.reader-chat-panel.open {
+  width: 45%;
+  min-width: 340px;
+  max-width: 600px;
+  padding: var(--space-4);
+}
+
+/* When chat is open, doc takes less space */
+.reader-layout.chat-open .reader-doc-panel {
+  flex: 1;
+}
+
+/* Slide-in animation for chat */
+.reader-chat-panel.open .chat-interface {
+  animation: fadeInScale 0.35s ease;
+}
+
+/* ── Ask Button FAB ── */
+.ask-fab {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-dropdown);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  background: var(--gradient-button);
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition: all var(--transition-base);
+  font-family: var(--font-sans);
+}
+
+.ask-fab:hover {
+  transform: translateY(-3px) scale(1.05);
+  filter: brightness(1.15);
+}
+
+.ask-fab.active {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  box-shadow: none;
+  color: #f87171;
+}
+
+/* ── Mobile Layout ── */
+@media (max-width: 768px) {
+  .reader-layout {
+    flex-direction: column;
+  }
+
+  .reader-doc-panel {
+    height: 50%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3);
+  }
+
+  .reader-chat-panel {
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    height: 0;
+    padding: 0;
+  }
+
+  .reader-chat-panel.open {
+    height: 50%;
+    padding: var(--space-3);
+  }
+
+  .reader-layout.chat-open .reader-doc-panel {
+    height: 50%;
+  }
+
+  .ask-fab {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+
+  .reader-navbar__doc-stats {
+    display: none;
+  }
+
+  .reader-navbar__doc-info {
+    max-width: 200px;
+  }
+}
+
+/* ── Empty state for pre-ask view ── */
+.reader-ask-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--space-8);
+  text-align: center;
+  color: var(--color-text-muted);
+  gap: var(--space-4);
+  opacity: 0.7;
+}
+
+.reader-ask-prompt__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-xl);
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reader-ask-prompt p {
+  font-size: 0.9rem;
+  max-width: 250px;
+}

@@ -1,0 +1,16 @@
+@echo off
+echo Starting AI Document Reader...
+echo.
+echo [1/2] Starting Backend (FastAPI)...
+start cmd /k "cd /d %~dp0backend && uvicorn app.main:app --reload --port 8000"
+timeout /t 3 /nobreak > nul
+echo [2/2] Starting Frontend (React)...
+start cmd /k "cd /d %~dp0frontend && npm run dev"
+echo.
+echo Application starting...
+echo Backend:  http://localhost:8000
+echo Frontend: http://localhost:5173
+echo.
+echo Press any key to open the app in your browser...
+pause > nul
+start http://localhost:5173

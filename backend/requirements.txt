@@ -1,0 +1,26 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.12
+
+# LangChain ecosystem — PINNED versions for compatibility
+langchain==0.3.13
+langchain-core>=0.3.26,<0.4.0
+langchain-community==0.3.13
+langchain-groq==0.2.1
+langchain-huggingface==0.1.2
+langchain-text-splitters==0.3.4
+langsmith>=0.1.17,<0.3
+
+# AI/ML
+faiss-cpu==1.9.0.post1
+sentence-transformers>=2.6.0
+
+# Document parsing
+pypdf>=5.0.0
+pdfplumber>=0.11.0
+python-docx==1.1.2
+
+# Utilities
+python-dotenv==1.0.1
+langdetect==1.0.9
+httpx>=0.23.0,<1.0
