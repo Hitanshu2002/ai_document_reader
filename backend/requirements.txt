@@ -12,7 +12,7 @@ langchain-text-splitters==0.3.4
 langsmith>=0.1.17,<0.3
 
 # AI/ML
-faiss-cpu==1.9.0.post1
+faiss-cpu>=1.9.0.post1
 sentence-transformers>=2.6.0
 
 # Document parsing
